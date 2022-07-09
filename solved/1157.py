@@ -1,28 +1,24 @@
-def get_alphabetCount(word, alphabet):
-    count = 0
-    for i in word:
-        if i == alphabet:
-            count += 1
-    return count
+# 기준점 잡고 돌면서 중복 횟수 잼
+# 중복 횟수 가장 많은 알파벳이랑 횟수 기록
+# max에 같은 알파벳이면 넘어가기, 더 높으면 덮어씌우는 식으로
 
-word = input()
-word = word.upper()
+# 사용된 알파벳이 무엇무엇이 있는지 반환
+def getList_usedElements(list):
+    result_list = []
+    for e in list:
+        if(e not in result_list):
+            result_list.append(e)
+    return result_list
 
-used_alphabets = []
-for i in word:
-    if i not in used_alphabets:
-        used_alphabets.append(i)
 
-maxCount = 1
-maxAlphabet = "?"
-for i in used_alphabets:
-    if maxCount > get_alphabetCount(word, i):
-        maxCount = get_alphabetCount(word, i)
-        maxAlphabet = i
-    if maxCount == get_alphabetCount(word, i):
-        maxAlphabet = "?"
+char_list = list(input().upper())
+max_count = 0
+for char in getList_usedElements(char_list):
+    char_count = char_list.count(char)
+    if(char_count > max_count):
+        max_count = char_count
+        max_count_char = char
+    elif(char_count == max_count):
+        max_count_char = '?'
 
-if list(word).count == 1:
-    maxAlphabet = word
-print(maxAlphabet)
-        
+print(max_count_char)

@@ -1,0 +1,1 @@
+w=list(input().split());print(len(w))
